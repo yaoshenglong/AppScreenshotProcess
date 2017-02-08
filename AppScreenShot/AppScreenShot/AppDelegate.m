@@ -169,8 +169,7 @@
     UIGraphicsEndImageContext();
     return  UIImagePNGRepresentation(image);
 }
-
-
+//获取截屏
 - (UIImage *)imageWithScreenshot
 {
     NSData *imageData = [self dataWithScreenshotInPNGFormat];
@@ -181,15 +180,14 @@
 - (UIImage *)waterMarkForImage:(UIImage *)shotImg
                   withMarkName:(NSString *)markName
 {
-    UIImage *bimage = [UIImage imageNamed:@"codeImage"];
+    UIImage *codeImg = [UIImage imageNamed:@"codeImage"];
     CGFloat width = shotImg.size.width;
     CGFloat height = shotImg.size.height;
     CGFloat codeImgRedio = 220/375.0f;//拼接图片的高/宽的比例 用来适配屏幕
     UIGraphicsBeginImageContext(CGSizeMake(width, width * codeImgRedio + height));
-
     [shotImg drawInRect:CGRectMake(0.0, 0.0, width, height)];
-    [bimage drawInRect:CGRectMake(0.0, height, width, width * codeImgRedio)];
-
+    [codeImg drawInRect:CGRectMake(0.0, height, width, width * codeImgRedio)];
+    //打上水印
     NSDictionary *attr = @{
                            NSFontAttributeName: [UIFont boldSystemFontOfSize:10],  //设置字体
                            NSForegroundColorAttributeName :[UIColor orangeColor]  //设置字体颜色
